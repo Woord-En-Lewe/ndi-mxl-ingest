@@ -1,0 +1,22 @@
+[Unit]
+Description=NDI graphics to MXL ingest
+Wants=network-online.target
+After=network-online.target chronyd.service chrony.service
+
+[Service]
+Type=simple
+User=ndi-ingest
+Group=mxl
+ExecStart=/usr/local/bin/ndi-mxl-ingest --config /etc/ndi-mxl-ingest/ingest.conf
+Restart=on-failure
+RestartSec=3
+TimeoutStopSec=10
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/dev/shm/mxl
+UMask=0007
+
+[Install]
+WantedBy=multi-user.target

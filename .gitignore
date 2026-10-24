@@ -1,0 +1,4 @@
+/build*/
+/stage/
+/ci/ci
+.DS_Store
